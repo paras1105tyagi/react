@@ -27,11 +27,11 @@ const RestaurantCard = (props) => {
 // input - restaurant card>resstaurant card promoted
 
 export const withPromotedLabel = (RestaurantCard) =>{
-  return () =>{
+  return (props) =>{
     return(
       <div>
-        <label>Promoted</label>
-        <RestaurantCard/>
+        <label className="absolute bg-blck text-white m-2 p-2 rounded-lg">Promoted</label>
+        <RestaurantCard{...props}/>
       </div>
     );
   };
