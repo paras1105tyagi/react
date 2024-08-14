@@ -9,6 +9,7 @@ const RestaurantMenu = () =>{
 //    const [resInfo, setresInfo] = useState(null);
 
    const {resId} = useParams();
+   cinst [showIndex,setShowIndex]= useState(0);
    const resInfo = useRestaurantMenu(resId);
 //     useEffect(() => {
 //       fetchMenu();
@@ -48,7 +49,10 @@ const RestaurantMenu = () =>{
 
 
             {/* categories accodian */}
-            {categories.map((category)=><RestaurantCategory data ={category?.card?.card}/>)}
+            {/* controlled components */}
+            {categories.map((category,index)=>(<RestaurantCategory data ={category?.card?.card}
+            // showItems={index===showIndex ? true:false}
+            />))}
         </div>
     );
 };
