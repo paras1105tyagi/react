@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import RestaurantCard , { withPromotedLabel} from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/userContext";
 // import resList from "../utils/mockData";
 const Body = () => {
   // State Variable- Super powerful variable(it maintains the state of a component)
@@ -47,6 +48,8 @@ const Body = () => {
   if (onlineStatus === false) {
     return <h1>Looks like you are offline</h1>;
   }
+
+  const {setUserName} = useContext(UserContext);
   return listofRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
@@ -62,7 +65,7 @@ const Body = () => {
               setSearchText(e.target.value);
             }}
           />
-          <button
+          {/* <button
             className="px-4 py-2 bg-green-100 m-4 rounded-lg"
             onClick={() => {
               // filter the restaurant card and update the UI
@@ -76,7 +79,10 @@ const Body = () => {
             }}
           >
             Search
-          </button>
+          </button> */}
+          <label>userName: </label>
+          <input className="border-black p-2"
+          value={loggedinUser} onChange={(e) => setUserName(e.target.value)}/>
         </div>
         <div className="search m-4 p-4 flex items-center">
           <button

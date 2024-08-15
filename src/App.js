@@ -6,20 +6,33 @@ import Header from "./components/Header";
 import Contact from "./components/Contact";
 import Body from "./components/Body";
 import {createBrowserRouter, RouterProvider, Outlet} from "react-router-dom";
-
+import { useContext } from "react";
 import RestaurantMenu from "./components/RestaurantMenu";
 // import Grocery from ;
-
-
+import UserContext from "./utils/userContext";
+import { useState,useEffect } from "react";
 const Grocery = lazy(()=> import("./components/Grocery"));
 const About = lazy(()=> import("./components/About"));
 const AppLayout = () => {
-  return (
+
+  const [userName, setUserName] = useState();
+
+  useEffect(()=>{
+   const data = {
+    name:"Paras"
+   };
+   setUserName(data.name); 
+  },[]);
+  return ( <UserContext.Provider value={{loggedinUser:userName , setUserName}}>
     <div className="app">
+   
+   
       <Header />
+     
       <Outlet />
 
     </div>
+    </UserContext.Provider>
   );
 };
 

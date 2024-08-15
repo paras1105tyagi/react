@@ -1,12 +1,12 @@
 import ItemList from "./ItemList";
 
-// const RestaurantCategory = (data) => {
+// const RestaurantCategory = (data,showItems, setShowIndex) => {
 // const [showItems, setShowItems]= useState(false);
-// console.log(data);
+
 // const handleClick=()=>{
-// console.log("Clicked");
+
 // setShowItems(!showItems);
-// }
+// };
 
 const RestaurantCategory=({data,showItems}) =>{
     return (
