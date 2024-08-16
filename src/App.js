@@ -13,6 +13,8 @@ import UserContext from "./utils/userContext";
 import { useState,useEffect } from "react";
 const Grocery = lazy(()=> import("./components/Grocery"));
 const About = lazy(()=> import("./components/About"));
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 const AppLayout = () => {
 
   const [userName, setUserName] = useState();
@@ -23,7 +25,9 @@ const AppLayout = () => {
    };
    setUserName(data.name); 
   },[]);
-  return ( <UserContext.Provider value={{loggedinUser:userName , setUserName}}>
+  return ( 
+  <Provider store={appStore}>
+  <UserContext.Provider value={{loggedinUser:userName , setUserName}}>
     <div className="app">
    
    
@@ -33,6 +37,7 @@ const AppLayout = () => {
 
     </div>
     </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -57,10 +62,12 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurants/:resid",
         element: <RestaurantMenu />,
-      }
+      } 
     ],
     errorElement: <Error/>,
   },
 ])
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router ={appRouter} />);
+
+
